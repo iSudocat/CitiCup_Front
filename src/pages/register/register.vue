@@ -1,3 +1,4 @@
+<!--TODO:完成注册界面-->
 <template>
     <div class="page login-page">
         <div class="container d-flex align-items-center">
@@ -6,7 +7,7 @@
                     <div class="col-lg-6">
                         <div class="info d-flex align-items-center">
                             <div class="welcome">
-                                <h1>登录</h1>
+                                <h1>注册</h1>
                                 <p>欢迎使用Blanker——白板企业信贷评估平台</p>
                             </div>
                         </div>
@@ -44,9 +45,10 @@
 <script>
 
     export default {
-        name: 'index',
+        name: 'indexComponent',
         data: () => {
             return {
+                loginInfo:null,
                 form: {
                     UserID: '',
                     Password: ''
@@ -55,11 +57,11 @@
         },
         methods: {
             onSubmit(evt) {
+                //TODO:完成注册逻辑
+
                 evt.preventDefault()
 
-                console.log(this.form.UserID)
-                console.log(this.form.Password)
-                window.location.href = 'select.html'
+
             }
         }
     }

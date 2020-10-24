@@ -9,6 +9,9 @@ import index from './index.vue'
 
 Vue.config.productionTip = false
 
+import axios from 'axios';
+Vue.prototype.axios = axios
+
 new Vue({
     render: h => h(index),
 }).$mount('#index')
