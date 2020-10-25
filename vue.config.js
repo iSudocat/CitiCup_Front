@@ -16,5 +16,10 @@ module.exports = {
             template: 'src/pages/register/register.html',
             filename: 'register.html'
         },
+        user:{
+            entry: 'src/pages/user/user.js',
+            template: 'src/pages/user/user.html',
+            filename: 'user.html'
+        }
     }
 }

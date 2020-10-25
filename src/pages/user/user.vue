@@ -8,33 +8,23 @@
             <div class="col-10 col-md-8" style="margin-top: 40px; margin-bottom: 40px;">
                 <b-card class="box" shadow>
                     <div>
-                        <b-card-text>请选择行业信息</b-card-text>
-                        <b-form-group>
-                            <b-form-radio-group id="radio-group-business" v-model="business.selected" :options="business.options" buttons
-                                                button-variant="outline-primary" size="sm" @input="bChange"></b-form-radio-group>
-                        </b-form-group>
+
                     </div>
-                    <div v-if="business.options[0].showDetails">
-                        <CateringComponent v-on:childByValue="childByValue"></CateringComponent>
-                    </div>
-                    <b-button block pill @click="submit" variant="primary">提交预测</b-button>
+
                 </b-card>
             </div>
 
         </div>
 
-
     </div>
-
 
 </template>
 
 <script>
     import headerComponent from "@/pages/header/header"
-    import CateringComponent from "@/pages/select/business/catering";
     export default {
-        name: 'selectComponent',
-        components: {CateringComponent,headerComponent},
+        name: 'userComponent',
+        components: {headerComponent},
         beforeMount: function(){
             //TODO:判断未登录时应跳转回登录界面
 
