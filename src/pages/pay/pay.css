@@ -4,9 +4,3 @@
 
     box-shadow : 0 5px 10px rgba(0, 0, 0, 0.1);
 }
-
-.img-circle{
-    border-radius:50%;
-    width:80px;
-    height:80px;
-}

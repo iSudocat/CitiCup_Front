@@ -4,14 +4,11 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import select from './select.vue'
-import './select.css'
+import pay from './pay.vue'
+import './pay.css'
 
 Vue.config.productionTip = false
 
-import axios from 'axios';
-Vue.prototype.axios = axios
-
 new Vue({
-    render: h => h(select),
-}).$mount('#select')
+    render: h => h(pay),
+}).$mount('#pay')

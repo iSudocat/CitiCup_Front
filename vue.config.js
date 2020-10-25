@@ -20,6 +20,11 @@ module.exports = {
             entry: 'src/pages/user/user.js',
             template: 'src/pages/user/user.html',
             filename: 'user.html'
+        },
+        pay:{
+            entry: 'src/pages/pay/pay.js',
+            template: 'src/pages/pay/pay.html',
+            filename: 'pay.html'
         }
     }
 }

@@ -17,7 +17,7 @@
                     <div v-if="business.options[0].showDetails">
                         <CateringComponent v-on:childByValue="childByValue"></CateringComponent>
                     </div>
-                    <b-button block pill @click="submit" variant="primary">提交预测</b-button>
+                    <b-button block pill @click="submit" variant="primary" style="margin-top: 20px">提交预测</b-button>
                 </b-card>
             </div>
 
@@ -35,8 +35,8 @@
     export default {
         name: 'selectComponent',
         components: {CateringComponent,headerComponent},
-        beforeMount: function(){
-            //TODO:判断未登录时应跳转回登录界面
+        beforeMount(){
+            //TODO:判断未登录时应跳转回登录界面(fhq)
 
             //window.location.href = 'index.html'
         },
@@ -60,13 +60,13 @@
                 this.business.options[0].showDetails = this.business.selected === 1;
             },
             childByValue: function (childValue) {
-                //TODO:完成所有组件间的数据传递
+                //TODO:完成所有组件间的数据传递(fhq)
 
                 //例子：
                 this.submitData.range = childValue.range
             },
             submit: function(){
-                //TODO:构造并提交预测结果
+                //TODO:构造并提交预测结果(fhq)
 
                 console.log(this.submitData.range)
 

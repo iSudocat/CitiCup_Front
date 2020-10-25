@@ -28,7 +28,7 @@
         },
         methods:{
             logOut: function () {
-                //TODO:注销后清除cookies
+                //TODO:注销后清除cookies(fhq)
 
                 window.location.href = 'index.html'
             },

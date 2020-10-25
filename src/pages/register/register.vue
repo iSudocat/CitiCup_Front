@@ -1,4 +1,4 @@
-<!--TODO:完成注册界面-->
+<!--TODO:完成注册界面(fhq)-->
 <template>
     <div class="page login-page">
         <div class="container d-flex align-items-center">
@@ -48,7 +48,6 @@
         name: 'indexComponent',
         data: () => {
             return {
-                loginInfo:null,
                 form: {
                     UserID: '',
                     Password: ''
@@ -57,7 +56,7 @@
         },
         methods: {
             onSubmit(evt) {
-                //TODO:完成注册逻辑
+                //TODO:完成注册提交(fhq)
 
                 evt.preventDefault()
 

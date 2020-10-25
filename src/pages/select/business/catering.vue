@@ -2,6 +2,8 @@
     <div>
         <b-card-text>请选择经营范围</b-card-text>
         <b-form-select v-model="range.selected" :options="range.options" size="sm" @input="dataTransport"></b-form-select>
+        <b-card-text style="margin-top: 20px">请输入名称</b-card-text>
+        <b-form-input v-model="name" type="text" size="sm" @input="dataTransport"></b-form-input>
         <b-card-text style="margin-top: 20px">请选择所在地区</b-card-text>
         <div class="row">
             <div class="col-6">
@@ -11,24 +13,39 @@
                 <b-form-select v-model="city.selected" :options="city.options" size="sm" @input="dataTransport"></b-form-select>
             </div>
         </div>
-        <b-card-text style="margin-top: 20px">请输入店铺评分：{{ star }}</b-card-text>
-        <b-form-input v-model="star" type="range" min="0" max="5" step="0.1" @input="dataTransport"></b-form-input>
-        <b-card-text style="margin-top: 20px">请输入店铺人均价格：</b-card-text>
-        <b-form-input v-model="avgPrice" type="number" min="0" @input="dataTransport"></b-form-input>
-        <b-card-text style="margin-top: 20px">请输入店铺最低价格：</b-card-text>
-        <b-form-input v-model="minPrice" type="number" min="0" @input="dataTransport"></b-form-input>
-        <b-card-text style="margin-top: 20px">请输入店铺历史订单数：</b-card-text>
-        <b-form-input v-model="totalOrder" type="number" min="0" @input="dataTransport"></b-form-input>
-        <b-card-text style="margin-top: 20px">店铺有无外卖：</b-card-text>
+        <b-card-text style="margin-top: 20px">请输入评分：{{ star }}</b-card-text>
+        <b-form-input v-model="star" type="range" min="0" max="5" step="0.1" size="sm" @input="dataTransport"></b-form-input>
+        <b-card-text style="margin-top: 20px">请输入人均价格（元）</b-card-text>
+        <b-form-input v-model="avgPrice" type="number" min="0" size="sm" @input="dataTransport"></b-form-input>
+        <b-card-text style="margin-top: 20px">请输入最低价格（元）</b-card-text>
+        <b-form-input v-model="minPrice" type="number" min="0" size="sm" @input="dataTransport"></b-form-input>
+        <b-card-text style="margin-top: 20px">请输入历史订单数：</b-card-text>
+        <b-form-input v-model="totalOrder" type="number" min="0" size="sm" @input="dataTransport"></b-form-input>
+        <b-card-text style="margin-top: 20px">有无外卖</b-card-text>
         <b-form-group>
             <b-form-radio v-model="takeout" value="1" @input="dataTransport">有</b-form-radio>
             <b-form-radio v-model="takeout" value="0" @input="dataTransport">无</b-form-radio>
         </b-form-group >
-        <b-card-text style="margin-top: 20px">店铺有无WIFI：</b-card-text>
+        <b-card-text style="margin-top: 20px">有无WIFI</b-card-text>
         <b-form-group>
             <b-form-radio v-model="wifi" value="1" @input="dataTransport">有</b-form-radio>
             <b-form-radio v-model="wifi" value="0" @input="dataTransport">无</b-form-radio>
         </b-form-group>
+        <hr>
+
+        <b-card-text style="margin-top: 20px">最大股东持股占比（%）</b-card-text>
+        <b-form-group>
+            <b-form-radio-group id="radio-group-business" v-model="shareHolding.selected" :options="shareHolding.options"
+                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+        </b-form-group>
+
+        <!--TODO:在这下面的hr标签前把风险评价模型剩余的6个指标按“最大股东持股占比（%）“的类似格式写完(czp)-->
+        <!--绑定数据的对象已命名在下面的data中，需要填写options-->
+
+        <hr>
+
+        <b-form-checkbox v-model="inputIncome" :value=true :unchecked-value=false>手动输入年收入（元） *若不输入将使用系统模型进行预测</b-form-checkbox>
+        <b-form-input v-if="inputIncome" v-model="income" type="number" min="0" size="sm" @input="dataTransport" style="margin-top: 10px"></b-form-input>
 
     </div>
 </template>
@@ -38,6 +55,7 @@
         name: "CateringComponent",
         data: () => {
             return {
+                name: "",
                 range:{
                     selected: null,
                     options: [
@@ -66,7 +84,7 @@
                         { text: '其他', value: 24 }
                     ]
                 },
-                province:{  //TODO:把河北省以后省份的城填完
+                province:{
                     selected: null,
                     options: [
                         { text: '请选择省份', value: null },
@@ -112,9 +130,57 @@
                 star: 0,
                 avgPrice: 0,
                 minPrice: 0,
+                totalOrder: 0,
                 takeout: null,
                 wifi: null,
-                totalOrder: 0
+                inputIncome: true,
+                income: 0,
+                shareHolding:{
+                    selected: 0,
+                    options: [
+                        { text: '缺失', value: 1},
+                        { text: '(MIN,0.5]', value: 2 },
+                        { text: '(0.5,0.7]', value: 3 },
+                        { text: '(0.7,0.99]', value: 4 },
+                        { text: '(0.99,MAX)', value: 5 }
+                    ]
+                },
+                ownership:{
+                    selected: 0,
+                    options: [
+
+                    ]
+                },
+                businessTime:{
+                    selected: 0,
+                    options: [
+
+                    ]
+                },
+                totalCredit:{
+                    selected: 0,
+                    options: [
+
+                    ]
+                },
+                creditBalance:{
+                    selected: 0,
+                    options: [
+
+                    ]
+                },
+                guaranteeValue:{
+                    selected: 0,
+                    options: [
+
+                    ]
+                },
+                guarantyType:{
+                    selected: 0,
+                    options: [
+
+                    ]
+                },
             }
         },
         methods: {
