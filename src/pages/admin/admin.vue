@@ -1,6 +1,6 @@
 <template>
 
-    <div class="page select-page">
+    <div class="page admin-page">
 
         <headerComponent></headerComponent>
 
@@ -142,7 +142,6 @@
         data: () => {
             return {
                 UserID: '',
-                remainingServiceDay: 0,
                 tel: null,
                 email: null,
                 predictLoaded: false,

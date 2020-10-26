@@ -42,7 +42,6 @@
 </template>
 
 <script>
-    import _global from '@/pages/global';
     export default {
         name: 'indexComponent',
         data: () => {
@@ -62,25 +61,25 @@
                 console.log(this.form.UserID)
                 console.log(this.form.Password)
 
+                this.cookies.set("UserID",this.form.UserID)
+                //window.location.href = 'select.html'
 
-                _global.UserID = "测试ID"
-                window.location.href = 'select.html'
-
-                /*
+                this.axios.defaults.withCredentials = true;
                 this.axios
-                    .post("http://blanker.iamwxc.com:8751/api/login?username=" + this.form.UserID + "&password=" + this.form.Password)
+                    .post("/api/login?username=" + this.form.UserID + "&password=" + this.form.Password)
                     .then(function (response) {
                         console.log(response.data)
 
                         //成功登陆时设置全局用户名
-                        _global.UserID = this.form.UserID
+
+                        console.log(document.cookie)
 
                     })
                     .catch(function (error) {
                         console.log(error)
                     });
 
-                 */
+
             }
         }
     }

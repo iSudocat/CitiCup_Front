@@ -26,5 +26,16 @@ module.exports = {
             template: 'src/pages/pay/pay.html',
             filename: 'pay.html'
         }
+    },
+    devServer:{
+        proxy: {
+            '/api': {                       //需要代理的接口
+                target:'http://49.235.232.153:8751', //目标服务器
+                changeOrigin: true, //是否跨域
+                pathRewrite: {
+                    '^/api': '/api'             //重定向
+                }
+            }
+        },
     }
 }
