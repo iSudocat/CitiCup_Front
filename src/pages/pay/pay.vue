@@ -110,36 +110,36 @@
         methods: {
             //TODO:向后端发送续费请求(wx)
             pay1: function(){
-                let url = 'http://blanker.iamwxc.com:8751/api/renew?level=1';
-                axios
-                  .post(url,{level:'1'})
+                let url = '/api/renew?level=1';
+                this.axios
+                  .post(url)
                   .then(response => (this.info = response))
                   .catch(function (error) { //请求失败处理
                     console.log(error);
                    });
             },
             pay2: function(){
-                let url = 'http://blanker.iamwxc.com:8751/api/renew?level=1';
-                axios
-                  .post(url,{level:'2'})
+                let url = '/api/renew?level=2';
+                this.axios
+                  .post(url)
                   .then(response => (this.info = response))
                   .catch(function (error) { //请求失败处理
                     console.log(error);
                    });
             },
             pay3: function(){
-                let url = 'http://blanker.iamwxc.com:8751/api/renew?level=1';
-                axios
-                  .post(url,{level:'3'})
+                let url = '/api/renew?level=3';
+                this.axios
+                  .post(url)
                   .then(response => (this.info = response))
                   .catch(function (error) { //请求失败处理
                     console.log(error);
                    });
             },
             pay4: function(){
-                let url = 'http://blanker.iamwxc.com:8751/api/renew?level=1';
-                axios
-                  .post(url,{level:'4'})
+                let url = '/api/renew?level=4';
+                this.axios
+                  .post(url)
                   .then(response => (this.info = response))
                   .catch(function (error) { //请求失败处理
                     console.log(error);

@@ -220,11 +220,13 @@
                     }
                 ]
 
+                /*
+
                 //开始发送请求
                 let url = 'http://blanker.iamwxc.com:8751/api/predictions';
 
-                axios.get(url, {
-                    UserID: _global.UserID,
+                this.axios.get(url, {
+                    UserID: '',
                   })
                   .then(function (response) {
                     console.log(response);
@@ -237,7 +239,7 @@
                 this.predictLoaded = true
 
                 //开始拆分
-                var rows = response.data.length
+                let rows = response.data.length
                 for (var i=0;i<rows;i++){
                     this.predictItems.id = response.data.id;
                     this.predictItems.time = response.data.predictTime;
@@ -247,7 +249,7 @@
                     this.predictItems.level = response.data.predictRiskLevel;
                     //initDetailModal(predoctItems, i, button);
                 }
-
+                */
             } catch (e) {
                 console.error(e)
             }
@@ -291,7 +293,7 @@
                     { key: 'lowestCost', label: '最低消费' },
                     { key: 'takeOut', label: '是否外卖' },
                     { key: 'totalSold', label:'总销售' },
-                    { key: 'wifi', label:'是否有wifi' }
+                    { key: 'wifi', label:'是否有wifi' },
                     { key: 'province', label:'省份' },
                     { key: 'city', label:'城市' },
                     { key: 'category', label:'行业' },

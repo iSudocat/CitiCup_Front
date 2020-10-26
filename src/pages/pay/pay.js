@@ -9,6 +9,9 @@ import './pay.css'
 
 Vue.config.productionTip = false
 
+import axios from 'axios'
+Vue.prototype.axios = axios
+
 new Vue({
     render: h => h(pay),
 }).$mount('#pay')
