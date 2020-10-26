@@ -57,8 +57,16 @@
                                 <b-form-group label="贷款利率">
                                     <b-form-input v-model="loanModal.loan.rate"></b-form-input>
                                 </b-form-group>
+                                <!--
                                 <b-form-group label="贷款期限（年）">
                                     <b-form-input v-model="loanModal.loan.time"></b-form-input>
+                                </b-form-group>
+                                -->
+                                <b-form-group label="贷款起始时间">
+                                    <b-form-datepicker v-model="loanModal.loan.loanStart"></b-form-datepicker>
+                                </b-form-group>
+                                <b-form-group label="贷款结束时间">
+                                    <b-form-datepicker v-model="loanModal.loan.loanEnd"></b-form-datepicker>
                                 </b-form-group>
                                 <b-form-group label="还款情况">
                                     <b-form-group>
@@ -103,7 +111,8 @@
                                 <div class="col-md-11 offset-md-1">押品主担保方式：{{detailModal.detail.guarantyType}}</div>
                                 <div class="col-md-11 offset-md-1">贷款额度（万元）：{{detailModal.detail.money}}</div>
                                 <div class="col-md-11 offset-md-1">贷款利率：{{detailModal.detail.rate}}</div>
-                                <div class="col-md-11 offset-md-1">贷款期限（年）：{{detailModal.detail.time}}</div>
+                                <div class="col-md-11 offset-md-1">贷款起始时间：{{detailModal.detail.loanStart}}</div>
+                                <div class="col-md-11 offset-md-1">贷款结束时间：{{detailModal.detail.loanEnd}}</div>
                                 <div class="col-md-11 offset-md-1">还款情况：{{detailModal.detail.situation}}</div>
 
                                 <!--TODO:按上面的写法把剩余的详情项目写完（czp） 
@@ -156,7 +165,9 @@
                     loan:{
                         money: null,
                         rate: null,
-                        time: null,
+                        //time: null,
+                        loanStart:null,
+                        loanEnd:null,
                         situation: null
                     }
                 },
@@ -186,7 +197,9 @@
                         guarantyType: null,
                         money: null,
                         rate: null,
-                        time: null,
+                        //time: null,
+                        loanStart:null,
+                        loanEnd:null,
                         situation: null
 
                     }
@@ -234,10 +247,12 @@
                 this.loanModal.loan = {
                     money: 10,
                     rate: 5,
-                    time: 2,
+                    //time: 2,
+                    loanStart: '2020-10-10',
+                    loanEnd: '2022-10-10',
                     situation: 2
                 }
-
+                this.loanModal.id=this.predictItems[index].id 
                 //let id = this.predictItems[index].id   //预测记录的id
 
                 this.loanModal.note = this.predictItems[this.loanModal.index].note
@@ -250,7 +265,21 @@
             },
             handleOk() {
                 //TODO:向后端提交贷款管理记录（czp）
-
+                this.axios
+                    .put("/api/api/prediction",{
+                        "id": this.loanModal.id,
+                        "loanAmount": this.loanModal.loan.money,
+                        "loanRate": this.loanModal.loan.rate,
+                        "loanStart": this.loanModal.loan.loanStart+"T06:28:18.552+00:00",
+                        "loanEnd": this.loanModal.loan.loanEnd+"T06:28:18.552+00:00",
+                        "repaymentLevel": this.loanModal.loan.situation
+                    })
+                    .then((response)=> {
+                        console.log(response.data)
+                    })
+                    .catch((error)=> {
+                        console.log(error)
+                    });
                 this.$nextTick(() => {
                     this.$bvModal.hide(this.loanModal.id)
                 })
