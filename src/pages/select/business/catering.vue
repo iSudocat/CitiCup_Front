@@ -38,10 +38,40 @@
             <b-form-radio-group id="radio-group-business" v-model="shareHolding.selected" :options="shareHolding.options"
                                 buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
         </b-form-group>
-
+        
         <!--TODO:在这下面的hr标签前把风险评价模型剩余的6个指标按“最大股东持股占比（%）“的类似格式写完(czp)-->
         <!--绑定数据的对象已命名在下面的data中，需要填写options-->
-
+        <!--应该算填完了-->
+        <b-card-text style="margin-top: 20px">经营场所权属</b-card-text>
+        <b-form-group>
+            <b-form-radio-group id="radio-group-business" v-model="ownership.selected" :options="ownership.options"
+                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+        </b-form-group>
+        <b-card-text style="margin-top: 20px">企业经营年限</b-card-text>
+        <b-form-group>
+            <b-form-radio-group id="radio-group-business" v-model="businessTime.selected" :options="businessTime.options"
+                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+        </b-form-group>
+        <b-card-text style="margin-top: 20px">累计授信总量（不含本笔申请）</b-card-text>
+        <b-form-group>
+            <b-form-radio-group id="radio-group-business" v-model="totalCredit.selected" :options="totalCredit.options"
+                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+        </b-form-group>
+        <b-card-text style="margin-top: 20px">征信总余额</b-card-text>
+        <b-form-group>
+            <b-form-radio-group id="radio-group-business" v-model="creditBalance.selected" :options="creditBalance.options"
+                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+        </b-form-group>
+        <b-card-text style="margin-top: 20px">押品有效担保价值</b-card-text>
+        <b-form-group>
+            <b-form-radio-group id="radio-group-business" v-model="guaranteeValue.selected" :options="guaranteeValue.options"
+                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+        </b-form-group>
+        <b-card-text style="margin-top: 20px">押品主担保方式</b-card-text>
+        <b-form-group>
+            <b-form-radio-group id="radio-group-business" v-model="guarantyType.selected" :options="guarantyType.options"
+                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+        </b-form-group>
         <hr>
 
         <b-form-checkbox v-model="inputIncome" :value=true :unchecked-value=false>手动输入年收入（元） *若不输入将使用系统模型进行预测</b-form-checkbox>
@@ -148,37 +178,59 @@
                 ownership:{
                     selected: 0,
                     options: [
-
+                        { text: '自有', value: 1},
+                        { text: '租赁&缺失', value: 2 },
+                        { text: '其他', value: 3 }
                     ]
                 },
                 businessTime:{
                     selected: 0,
                     options: [
-
+                        { text: '(MIN,3]&缺失', value: 1},
+                        { text: '(3,4]', value: 2 },
+                        { text: '(4,5]', value: 3 },
+                        { text: '(5,11]', value: 4 },
+                        { text: '(11,13]', value: 5 },
+                        { text: '(13,MAX)', value: 6 }
                     ]
                 },
                 totalCredit:{
                     selected: 0,
                     options: [
-
+                        { text: '缺失', value: 1},
+                        { text: '(MIN,2000000]', value: 2 },
+                        { text: '(2000000,11799866]', value: 3 },
+                        { text: '(11799866,17500000]', value: 4 },
+                        { text: '(17500000,MAX)', value: 5 }
                     ]
                 },
                 creditBalance:{
                     selected: 0,
                     options: [
-
+                        { text: '(MIN,18245]&缺失', value: 1},
+                        { text: '(18245,207261]', value: 2 },
+                        { text: '(207261,1993987]', value: 3 },
+                        { text: '(1993987,3917093]', value: 4 },
+                        { text: '(3917093,MAX)', value: 5 }
                     ]
                 },
                 guaranteeValue:{
                     selected: 0,
                     options: [
-
+                        { text: '缺失', value: 1},
+                        { text: '=0', value: 2 },
+                        { text: '(MIN,1000000]', value: 3 },
+                        { text: '(1000000,27900000]', value: 4 },
+                        { text: '(27900000,MAX)', value: 5 }
                     ]
                 },
                 guarantyType:{
                     selected: 0,
                     options: [
-
+                         { text: '信用', value: 1},
+                        { text: '抵押', value: 2 },
+                        { text: '质押', value: 3 },
+                        { text: '保证', value: 4 }
                     ]
                 },
             }

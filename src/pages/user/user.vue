@@ -95,8 +95,18 @@
                                 <div class="col-md-11 offset-md-1">有无WiFi：{{detailModal.detail.wifi}}</div>
                                 <div class="col-md-11 offset-md-1">年收入：{{detailModal.detail.income}}</div>
                                 <div class="col-md-11 offset-md-1">最大股东持股占比：{{detailModal.detail.shareHolding}}</div>
+                                <div class="col-md-11 offset-md-1">经营场所权属：{{detailModal.detail.ownership}}</div>
+                                <div class="col-md-11 offset-md-1">企业经营年限：{{detailModal.detail.businessTime}}</div>
+                                <div class="col-md-11 offset-md-1">累计授信总量（不含本笔申请）：{{detailModal.detail.totalCredit}}</div>
+                                <div class="col-md-11 offset-md-1">征信总余额：{{detailModal.detail.creditBalance}}</div>
+                                <div class="col-md-11 offset-md-1">押品有效担保价值：{{detailModal.detail.guaranteeValue}}</div>
+                                <div class="col-md-11 offset-md-1">押品主担保方式：{{detailModal.detail.guarantyType}}</div>
+                                <div class="col-md-11 offset-md-1">贷款额度（万元）：{{detailModal.detail.money}}</div>
+                                <div class="col-md-11 offset-md-1">贷款利率：{{detailModal.detail.rate}}</div>
+                                <div class="col-md-11 offset-md-1">贷款期限（年）：{{detailModal.detail.time}}</div>
+                                <div class="col-md-11 offset-md-1">还款情况：{{detailModal.detail.situation}}</div>
 
-                                <!--TODO:按上面的写法把剩余的详情项目写完（czp）
+                                <!--TODO:按上面的写法把剩余的详情项目写完（czp） 
                                 ownership
                                 businessTime
                                 totalCredit
