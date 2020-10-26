@@ -4,10 +4,8 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import './index.css'
-import index from './index.vue'
-import VueCookies from 'vue-cookies'
-Vue.prototype.cookies = VueCookies
+import './admin.css'
+import admin from './admin.vue'
 
 Vue.config.productionTip = false
 
@@ -15,5 +13,5 @@ import axios from 'axios';
 Vue.prototype.axios = axios
 
 new Vue({
-    render: h => h(index),
-}).$mount('#index')
+    render: h => h(admin),
+}).$mount('#admin')

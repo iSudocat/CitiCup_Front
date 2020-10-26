@@ -17,13 +17,15 @@
 </template>
 
 <script>
-    import _global from '@/pages/global';
+    import $cookies from 'vue-cookies'
     export default {
         name: "headerComponent",
-
+        mounted()  {
+            this.UserID = $cookies.get('UserID')
+        },
         data: () => {
             return{
-                UserID: _global.UserID,
+                UserID: '',
             }
         },
         methods:{
