@@ -217,11 +217,38 @@
                         name:'珞珈面馆',
                         business:'餐饮业',
                         city:"武汉",
-                        level:'A',
-                        note:'11111'
+                        level:'A'
                     }
                 ]
+
+                //开始发送请求
+                let url = 'http://blanker.iamwxc.com:8751/api/predictions';
+
+                axios.get(url, {
+                    UserID: _global.UserID,
+                  })
+                  .then(function (response) {
+                    console.log(response);
+                    this.records = response.data;
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+
                 this.predictLoaded = true
+
+                //开始拆分
+                var rows = response.data.length
+                for (var i=0;i<rows;i++){
+                    this.predictItems.id = response.data.id;
+                    this.predictItems.time = response.data.predictTime;
+                    this.predictItems.name = response.data.enterpriseName;
+                    this.predictItems.business = response.data.industryName;
+                    this.predictItems.city = response.data.city;
+                    this.predictItems.level = response.data.predictRiskLevel;
+                    //initDetailModal(predoctItems, i, button);
+                }
+
             } catch (e) {
                 console.error(e)
             }
@@ -258,7 +285,34 @@
             initDetailModal(item, index, button) {
                 this.detailModal.index = index
                 //TODO:显示预测的详情记录【不用再获取，从前面获取的完整记录中构造即可】（wx）
-
+                this.predictFields =[
+                    { key: 'id', label: '序号' },
+                    { key: 'score', label: '分数' },
+                    { key: 'average', label: '人均消费' },
+                    { key: 'lowestCost', label: '最低消费' },
+                    { key: 'takeOut', label: '是否外卖' },
+                    { key: 'totalSold', label:'总销售' },
+                    { key: 'wifi', label:'是否有wifi' }
+                    { key: 'province', label:'省份' },
+                    { key: 'city', label:'城市' },
+                    { key: 'category', label:'行业' },
+                    { key: 'enterpriseName', label:'企业名' },
+                    { key: 'predictTime', label:'预测时间' },
+                    { key: 'industryName', label:'工厂名称' },
+                    { key: 'predictRiskLevel', label:'预测等级' },
+                    { key: 'loanAmount', label:'贷款数量' },
+                    { key: 'loanRate', label:'利率' },
+                    { key: 'loanStart', label:'贷款开始时间' },
+                    { key: 'loanEnd', label:'贷款结束时间' },
+                    { key: 'repaymentLevel', label:'偿还等级' },
+                    { key: 'proportion', label:'财产' },
+                    { key: 'ownershipOfPremises', label:'经营场所权属' },
+                    { key: 'operatingAge', label:'营业年限' },
+                    { key: 'totalLoanMoney', label:'总贷款额' },
+                    { key: 'totalCreditBalance', label:'累计授信总量' },
+                    { key: 'effectiveGuaranteeValue', label:'有效担保价值' },
+                    { key: 'mainGuaranteeMethod', label:'主担保方法' }
+                ]
 
                 this.$root.$emit('bv::show::modal', this.detailModal.id, button)
             }
