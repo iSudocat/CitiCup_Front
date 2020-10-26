@@ -2,7 +2,7 @@
     <div>
         <b-card-text>请选择经营范围</b-card-text>
         <b-form-select v-model="range.selected" :options="range.options" size="sm" @input="dataTransport"></b-form-select>
-        <b-card-text style="margin-top: 20px">请输入名称</b-card-text>
+        <b-card-text style="margin-top: 20px">请输入企业名称</b-card-text>
         <b-form-input v-model="name" type="text" size="sm" @input="dataTransport"></b-form-input>
         <b-card-text style="margin-top: 20px">请选择所在地区</b-card-text>
         <div class="row">
@@ -38,10 +38,7 @@
             <b-form-radio-group id="radio-group-business" v-model="shareHolding.selected" :options="shareHolding.options"
                                 buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
         </b-form-group>
-        
-        <!--TODO:在这下面的hr标签前把风险评价模型剩余的6个指标按“最大股东持股占比（%）“的类似格式写完(czp)-->
-        <!--绑定数据的对象已命名在下面的data中，需要填写options-->
-        <!--应该算填完了-->
+
         <b-card-text style="margin-top: 20px">经营场所权属</b-card-text>
         <b-form-group>
             <b-form-radio-group id="radio-group-business" v-model="ownership.selected" :options="ownership.options"

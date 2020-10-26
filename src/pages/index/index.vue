@@ -61,21 +61,19 @@
                 console.log(this.form.UserID)
                 console.log(this.form.Password)
 
-                this.cookies.set("UserID",this.form.UserID)
-                //window.location.href = 'select.html'
+
 
                 this.axios.defaults.withCredentials = true;
                 this.axios
                     .post("/api/login?username=" + this.form.UserID + "&password=" + this.form.Password)
-                    .then(function (response) {
+                    .then((response) => {
                         console.log(response.data)
-
-                        //成功登陆时设置全局用户名
+                        this.cookies.set("UserID",this.form.UserID)
 
                         console.log(document.cookie)
-
+                        window.location.href = 'select.html'
                     })
-                    .catch(function (error) {
+                    .catch((error) => {
                         console.log(error)
                     });
 

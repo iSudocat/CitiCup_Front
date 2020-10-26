@@ -11,23 +11,23 @@
                         <img class="img-circle" src="../../assets/head.svg"  alt="头像"/>
                     </div>
                     <b-card-text style="margin-top: 20px">
-                        <div class="col-md-8 offset-md-2">账号：{{UserID}}</div>
+                        <div class="col-md-8 offset-md-3">账号：{{UserID}}</div>
                     </b-card-text>
                     <b-card-text>
-                        <div class="col-md-6 offset-md-2">
+                        <div class="col-md-6 offset-md-3">
                             剩余服务时间：{{remainingServiceDay}}天 <b-link href="pay.html">充值</b-link>
                         </div>
                     </b-card-text>
                     <b-card-text>
-                        <div class="col-md-8 offset-md-2">手机号：{{tel}}</div>
+                        <div class="col-md-8 offset-md-3">手机号：{{tel}}</div>
                     </b-card-text>
                     <b-card-text>
-                        <div class="col-md-8 offset-md-2">邮箱：{{email}}</div>
+                        <div class="col-md-8 offset-md-3">邮箱：{{email}}</div>
                     </b-card-text>
 
                     <b-card title="预测记录">
                         <div>
-                            <b-table hover :responsive="true" v-if="predictLoaded" :fields="predictFields" :items="predictItems">
+                            <b-table hover :responsive="true" :fields="predictFields" :items="predictItems">
                                 <template v-slot:cell(operation)="row" >
                                     <b-button variant="primary" size="sm" @click="initLoanModal(row.item, row.index, $event.target)" style="width: 5rem">
                                         贷款管理
@@ -89,44 +89,36 @@
                             </template>
                         </b-modal>
 
-                        <b-modal size="md" :id="detailModal.id" :title="detailModal.title" ok-only>
+                        <b-modal size="lg" :id="detailModal.id" :title="detailModal.title" ok-only>
                             <div>
-                                <div class="col-md-11 offset-md-1">所在行业：{{detailModal.detail.business}}</div>
-                                <div class="col-md-11 offset-md-1">企业名称：{{detailModal.detail.name}}</div>
-                                <div class="col-md-11 offset-md-1">经营范围：{{detailModal.detail.range}}</div>
-                                <div class="col-md-11 offset-md-1">所在城市：{{detailModal.detail.city}}</div>
-                                <div class="col-md-11 offset-md-1">评分：{{detailModal.detail.star}}</div>
-                                <div class="col-md-11 offset-md-1">人均价格：{{detailModal.detail.avgPrice}}</div>
-                                <div class="col-md-11 offset-md-1">最低价格：{{detailModal.detail.minPrice}}</div>
-                                <div class="col-md-11 offset-md-1">历史订单数：{{detailModal.detail.totalOrder}}</div>
-                                <div class="col-md-11 offset-md-1">有无外卖：{{detailModal.detail.takeout}}</div>
-                                <div class="col-md-11 offset-md-1">有无WiFi：{{detailModal.detail.wifi}}</div>
-                                <div class="col-md-11 offset-md-1">年收入：{{detailModal.detail.income}}</div>
-                                <div class="col-md-11 offset-md-1">最大股东持股占比：{{detailModal.detail.shareHolding}}</div>
-                                <div class="col-md-11 offset-md-1">经营场所权属：{{detailModal.detail.ownership}}</div>
-                                <div class="col-md-11 offset-md-1">企业经营年限：{{detailModal.detail.businessTime}}</div>
-                                <div class="col-md-11 offset-md-1">累计授信总量（不含本笔申请）：{{detailModal.detail.totalCredit}}</div>
-                                <div class="col-md-11 offset-md-1">征信总余额：{{detailModal.detail.creditBalance}}</div>
-                                <div class="col-md-11 offset-md-1">押品有效担保价值：{{detailModal.detail.guaranteeValue}}</div>
-                                <div class="col-md-11 offset-md-1">押品主担保方式：{{detailModal.detail.guarantyType}}</div>
-                                <div class="col-md-11 offset-md-1">贷款额度（万元）：{{detailModal.detail.money}}</div>
-                                <div class="col-md-11 offset-md-1">贷款利率：{{detailModal.detail.rate}}</div>
-                                <div class="col-md-11 offset-md-1">贷款起始时间：{{detailModal.detail.loanStart}}</div>
-                                <div class="col-md-11 offset-md-1">贷款结束时间：{{detailModal.detail.loanEnd}}</div>
-                                <div class="col-md-11 offset-md-1">还款情况：{{detailModal.detail.situation}}</div>
+                                <div class="row">
+                                    <div class="col-md-5 offset-md-1" style="margin-top: 5px;">所在行业：{{detailModal.detail.business}}</div>
+                                    <div class="col-md-5 offset-md-7" style="margin-top: 5px;">企业名称：{{detailModal.detail.name}}</div>
+                                </div>
 
-                                <!--TODO:按上面的写法把剩余的详情项目写完（czp） 
-                                ownership
-                                businessTime
-                                totalCredit
-                                creditBalance
-                                guaranteeValue
-                                guarantyType
-                                money
-                                rate
-                                time
-                                situation
-                                -->
+                                <div class="col-md-5 offset-md-1" style="margin-top: 5px;">经营范围：{{detailModal.detail.range}}</div>
+                                <div class="col-md-5 offset-md-7" style="margin-top: 5px;">所在城市：{{detailModal.detail.city}}</div>
+
+                                <div class="col-md-5 offset-md-1" style="margin-top: 5px;">评分：{{detailModal.detail.star}}</div>
+                                <div class="col-md-5 offset-md-1" style="margin-top: 5px;">人均价格：{{detailModal.detail.avgPrice}}</div>
+                                <div class="col-md-5 offset-md-1" style="margin-top: 5px;">最低价格：{{detailModal.detail.minPrice}}</div>
+                                <div class="col-md-5 offset-md-1" style="margin-top: 5px;">历史订单数：{{detailModal.detail.totalOrder}}</div>
+                                <div class="col-md-5 offset-md-1" style="margin-top: 5px;">有无外卖：{{detailModal.detail.takeout}}</div>
+                                <div class="col-md-5 offset-md-1" style="margin-top: 5px;">有无WiFi：{{detailModal.detail.wifi}}</div>
+                                <div class="col-md-5 offset-md-1" style="margin-top: 5px;">年收入：{{detailModal.detail.income}}</div>
+                                <div class="col-md-5 offset-md-1" style="margin-top: 5px;">最大股东持股占比：{{detailModal.detail.shareHolding}}</div>
+                                <div class="col-md-5 offset-md-7" style="margin-top: 5px;">经营场所权属：{{detailModal.detail.ownership}}</div>
+                                <div class="col-md-5 offset-md-7" style="margin-top: 5px;">企业经营年限：{{detailModal.detail.businessTime}}</div>
+                                <div class="col-md-5 offset-md-7" style="margin-top: 5px;">累计授信总量（不含本笔申请）：{{detailModal.detail.totalCredit}}</div>
+                                <div class="col-md-11 offset-md-1" style="margin-top: 5px;">征信总余额：{{detailModal.detail.creditBalance}}</div>
+                                <div class="col-md-11 offset-md-1" style="margin-top: 5px;">押品有效担保价值：{{detailModal.detail.guaranteeValue}}</div>
+                                <div class="col-md-11 offset-md-1" style="margin-top: 5px;">押品主担保方式：{{detailModal.detail.guarantyType}}</div>
+                                <div class="col-md-11 offset-md-1" style="margin-top: 5px;">贷款额度（万元）：{{detailModal.detail.money}}</div>
+                                <div class="col-md-11 offset-md-1" style="margin-top: 5px;">贷款利率：{{detailModal.detail.rate}}</div>
+                                <div class="col-md-11 offset-md-1" style="margin-top: 5px;">贷款起始时间：{{detailModal.detail.loanStart}}</div>
+                                <div class="col-md-11 offset-md-1" style="margin-top: 5px;">贷款结束时间：{{detailModal.detail.loanEnd}}</div>
+                                <div class="col-md-11 offset-md-1" style="margin-top: 5px;">还款情况：{{detailModal.detail.situation}}</div>
+
 
                             </div>
                         </b-modal>
@@ -144,9 +136,9 @@
         name: 'userComponent',
         components: {headerComponent},
         beforeMount(){
-            //TODO:判断未登录时应跳转回登录界面（fhq）
-
-            //window.location.href = 'index.html'
+            if(this.cookies.get('UserID') == null){
+                window.location.href = 'index.html'
+            }
         },
         data: () => {
             return {
@@ -154,7 +146,6 @@
                 remainingServiceDay: 0,
                 tel: null,
                 email: null,
-                predictLoaded: false,
                 predictItems:[],
                 predictFields:[],
                 loanModal: {
@@ -164,7 +155,6 @@
                     loan:{
                         money: null,
                         rate: null,
-                        //time: null,
                         loanStart:null,
                         loanEnd:null,
                         situation: null
@@ -196,20 +186,63 @@
                         guarantyType: null,
                         money: null,
                         rate: null,
-                        //time: null,
                         loanStart:null,
                         loanEnd:null,
                         situation: null
 
                     }
                 },
-
+                predictDetails:[],
+                levelMap: [
+                    { text: 'A', value: 1},
+                    { text: 'B', value: 2 },
+                    { text: 'C', value: 3 }
+                ]
             }
         },
-        async mounted () {
-            this.predictLoaded = false
+        mounted () {
+            this.predictDetails = []
             try {
-                //TODO:从后端请求预测记录【请求到的是完整的一条记录，自己创建一个对象来存，predictItems中仅限示特定项目】（wx）
+                /* 示例数据
+                this.predictItems = [
+                    {
+                        id: '2',
+                        time:'2020.10.25 19:21:35',
+                        name:'珞珈面馆',
+                        business:'餐饮业',
+                        city:"武汉",
+                        level:'A'
+                    }
+                ]
+                */
+
+                this.axios.get('/api/me')
+                    .then((response) => {
+                        console.log(response)
+                        this.UserID = response.data.data.username
+                        let time1 = Date.parse(new Date())
+                        let time2 = Date.parse(response.data.data.restUseTime)
+                        this.remainingServiceDay = Math.ceil((time2 - time1)/1000/60/60/24)
+                        this.tel = response.data.data.phoneNum
+                        this.email = response.data.data.email
+
+                        this.predictDetails.forEach((item) => {
+                            let p ={
+                                id: item.id,
+                                name: item.industryName,
+                                time: item.predictTime.substring(0,item.predictTime.indexOf("T")),
+                                business: '餐饮业',
+                                city: item.city,
+                                level: this.levelMap[item.predictRiskLevel].text
+                            }
+                            this.predictItems.push(p)
+                        })
+
+                        this.predictLoaded = true
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
 
                 this.predictFields =[
                     { key: 'time', label: '预测时间' },
@@ -221,49 +254,8 @@
                     { key: 'detail', label:'详情' }
                 ]
 
-                //table条目存在这，这里是一条示例数据
-                this.predictItems = [
-                    {
-                        id: '2',
-                        time:'2020.10.25 19:21:35',
-                        name:'珞珈面馆',
-                        business:'餐饮业',
-                        city:"武汉",
-                        level:'A'
-                    }
-                ]
+                this.getAllPrediction()
 
-                /*
-
-                //开始发送请求
-                let url = 'http://blanker.iamwxc.com:8751/api/predictions';
-
-                this.axios.get(url, {
-                    UserID: '',
-                  })
-                  .then(function (response) {
-                    console.log(response);
-                    this.records = response.data;
-                  })
-                  .catch(function (error) {
-                    console.log(error);
-                  });
-
-                this.predictLoaded = true
-
-                //开始拆分
-                let rows = response.data.length
-                for (var i=0;i<rows;i++){
-                    this.predictItems.id = response.data.id;
-                    this.predictItems.time = response.data.predictTime;
-                    this.predictItems.name = response.data.enterpriseName;
-                    this.predictItems.business = response.data.industryName;
-                    this.predictItems.city = response.data.city;
-                    this.predictItems.level = response.data.predictRiskLevel;
-                    //initDetailModal(predoctItems, i, button);
-                }
-                */
-                this.predictLoaded = true
             } catch (e) {
                 console.error(e)
             }
@@ -271,20 +263,18 @@
         methods: {
             initLoanModal(item, index, button) {
                 this.loanModal.index = index
-                //TODO:获取贷款管理记录（czp）
-                //测试数据
+
                 this.loanModal.loan = {
-                    money: 10,
-                    rate: 5,
-                    //time: 2,
-                    loanStart: '2020-10-10',
-                    loanEnd: '2022-10-10',
-                    situation: 2
+                    id: this.predictDetails[index].id,
+                    money: this.predictDetails[index].loanAmount,
+                    rate: this.predictDetails[index].loanRate,
+                    loanStart: this.predictDetails[index].loanStart,
+                    loanEnd: this.predictDetails[index].loanEnd,
+                    situation: this.predictDetails[index].repaymentLevel
                 }
-                this.loanModal.id=this.predictItems[index].id 
-                //let id = this.predictItems[index].id   //预测记录的id
 
                 this.loanModal.note = this.predictItems[this.loanModal.index].note
+
                 this.$root.$emit('bv::show::modal', this.loanModal.id, button)
             },
             handleCancel(){
@@ -293,18 +283,19 @@
                 })
             },
             handleOk() {
-                //TODO:向后端提交贷款管理记录（czp）
                 this.axios
                     .put("/api/prediction",{
-                        "id": this.loanModal.id,
+                        "id": this.loanModal.loan.id,
                         "loanAmount": this.loanModal.loan.money,
                         "loanRate": this.loanModal.loan.rate,
-                        "loanStart": this.loanModal.loan.loanStart+"T06:28:18.552+00:00",
-                        "loanEnd": this.loanModal.loan.loanEnd+"T06:28:18.552+00:00",
+                        "loanStart": this.loanModal.loan.loanStart,
+                        "loanEnd": this.loanModal.loan.loanEnd,
                         "repaymentLevel": this.loanModal.loan.situation
                     })
                     .then((response)=> {
                         console.log(response.data)
+
+                        this.getAllPrediction()
                     })
                     .catch((error)=> {
                         console.log(error)
@@ -316,37 +307,38 @@
             initDetailModal(item, index, button) {
                 this.detailModal.index = index
                 //TODO:显示预测的详情记录【不用再获取，从前面获取的完整记录中构造即可】（wx）
-                this.predictFields =[
-                    { key: 'id', label: '序号' },
-                    { key: 'score', label: '分数' },
-                    { key: 'average', label: '人均消费' },
-                    { key: 'lowestCost', label: '最低消费' },
-                    { key: 'takeOut', label: '是否外卖' },
-                    { key: 'totalSold', label:'总销售' },
-                    { key: 'wifi', label:'是否有wifi' },
-                    { key: 'province', label:'省份' },
-                    { key: 'city', label:'城市' },
-                    { key: 'category', label:'行业' },
-                    { key: 'enterpriseName', label:'企业名' },
-                    { key: 'predictTime', label:'预测时间' },
-                    { key: 'industryName', label:'工厂名称' },
-                    { key: 'predictRiskLevel', label:'预测等级' },
-                    { key: 'loanAmount', label:'贷款数量' },
-                    { key: 'loanRate', label:'利率' },
-                    { key: 'loanStart', label:'贷款开始时间' },
-                    { key: 'loanEnd', label:'贷款结束时间' },
-                    { key: 'repaymentLevel', label:'偿还等级' },
-                    { key: 'proportion', label:'财产' },
-                    { key: 'ownershipOfPremises', label:'经营场所权属' },
-                    { key: 'operatingAge', label:'营业年限' },
-                    { key: 'totalLoanMoney', label:'总贷款额' },
-                    { key: 'totalCreditBalance', label:'累计授信总量' },
-                    { key: 'effectiveGuaranteeValue', label:'有效担保价值' },
-                    { key: 'mainGuaranteeMethod', label:'主担保方法' }
-                ]
+
 
                 this.$root.$emit('bv::show::modal', this.detailModal.id, button)
+            },
+            getAllPrediction(){
+                this.axios.get('/api/predictions')
+                    .then((response) => {
+                        console.log(response)
+                        this.predictDetails = []
+                        response.data.data.forEach((item) => {
+                            console.log(item)
+                            this.predictDetails.push(item)
+                        })
+                        this.predictDetails.forEach((item) => {
+                            let p ={
+                                id: item.id,
+                                name: item.industryName,
+                                time: item.predictTime.substring(0,item.predictTime.indexOf("T")),
+                                business: '餐饮业',
+                                city: item.city,
+                                level: this.levelMap[item.predictRiskLevel].text
+                            }
+                            this.predictItems.push(p)
+                        })
+
+                        this.predictLoaded = true
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
             }
+
         }
     }
 

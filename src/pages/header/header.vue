@@ -30,12 +30,11 @@
         },
         methods:{
             logOut: function () {
-                //TODO:注销后清除cookies(fhq)
-
+                $cookies.remove('JSESSIONID')
+                $cookies.remove('UserID')
                 window.location.href = 'index.html'
             },
         }
-
     }
 </script>
 

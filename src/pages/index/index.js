@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './index.css'
 import index from './index.vue'
+
 import VueCookies from 'vue-cookies'
 Vue.prototype.cookies = VueCookies
 

@@ -7,6 +7,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import select from './select.vue'
 import './select.css'
 
+import VueCookies from 'vue-cookies'
+Vue.prototype.cookies = VueCookies
+
 Vue.config.productionTip = false
 
 import axios from 'axios';

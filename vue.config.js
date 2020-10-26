@@ -25,7 +25,12 @@ module.exports = {
             entry: 'src/pages/pay/pay.js',
             template: 'src/pages/pay/pay.html',
             filename: 'pay.html'
-        }
+        },
+        user:{
+            entry: 'src/pages/admin/admin.js',
+            template: 'src/pages/admin/admin.html',
+            filename: 'admin.html'
+        },
     },
     devServer:{
         proxy: {
