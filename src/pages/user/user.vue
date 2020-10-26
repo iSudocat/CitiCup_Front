@@ -224,7 +224,7 @@
                 //table条目存在这，这里是一条示例数据
                 this.predictItems = [
                     {
-                        id: '0000001',
+                        id: '2',
                         time:'2020.10.25 19:21:35',
                         name:'珞珈面馆',
                         business:'餐饮业',
@@ -263,6 +263,7 @@
                     //initDetailModal(predoctItems, i, button);
                 }
                 */
+                this.predictLoaded = true
             } catch (e) {
                 console.error(e)
             }
@@ -294,7 +295,7 @@
             handleOk() {
                 //TODO:向后端提交贷款管理记录（czp）
                 this.axios
-                    .put("/api/api/prediction",{
+                    .put("/api/prediction",{
                         "id": this.loanModal.id,
                         "loanAmount": this.loanModal.loan.money,
                         "loanRate": this.loanModal.loan.rate,
