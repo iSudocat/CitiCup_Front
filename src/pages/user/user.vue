@@ -261,11 +261,11 @@
                 ],
                 ownershipMap: [
                     { text: '自有', value: 1},
-                    { text: '租赁&缺失', value: 2 },
+                    { text: '租赁/缺失', value: 2 },
                     { text: '其他', value: 3 }
                 ],
                 businessTimeMap: [
-                    { text: '(MIN,3]&缺失', value: 3},
+                    { text: '缺失 / (0,3]', value: 3},
                     { text: '(3,4]', value: 4 },
                     { text: '(4,5]', value: 5 },
                     { text: '(5,11]', value: 11 },
@@ -274,13 +274,13 @@
                 ],
                 totalCreditMap: [
                     { text: '缺失', value: null},
-                    { text: '(MIN,2000000]', value: 2000000 },
+                    { text: '(0,2000000]', value: 2000000 },
                     { text: '(2000000,11799866]', value: 11799866 },
                     { text: '(11799866,17500000]', value: 17500000 },
                     { text: '(17500000,MAX)', value: 17500002 }
                 ],
                 creditBalanceMap: [
-                    { text: '(MIN,18245]&缺失', value: 18425},
+                    { text: '缺失 / (0,18245]', value: 18425},
                     { text: '(18245,207261]', value: 207261 },
                     { text: '(207261,1993987]', value: 1993987 },
                     { text: '(1993987,3917093]', value: 3917093 },
@@ -288,8 +288,8 @@
                 ],
                 guaranteeValueMap: [
                     { text: '缺失', value: null},
-                    { text: '=0', value: 0 },
-                    { text: '(MIN,1000000]', value: 1000000 },
+                    { text: '0', value: 0 },
+                    { text: '(0,1000000]', value: 1000000 },
                     { text: '(1000000,27900000]', value: 27900000 },
                     { text: '(27900000,MAX)', value: 28900000 }
                 ],
