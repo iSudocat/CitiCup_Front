@@ -26,7 +26,7 @@ module.exports = {
             template: 'src/pages/pay/pay.html',
             filename: 'pay.html'
         },
-        user:{
+        admin:{
             entry: 'src/pages/admin/admin.js',
             template: 'src/pages/admin/admin.html',
             filename: 'admin.html'

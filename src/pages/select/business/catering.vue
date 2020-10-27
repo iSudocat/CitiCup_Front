@@ -165,11 +165,11 @@
                 shareHolding:{
                     selected: 0,
                     options: [
-                        { text: '缺失', value: 1},
-                        { text: '(MIN,0.5]', value: 2 },
-                        { text: '(0.5,0.7]', value: 3 },
-                        { text: '(0.7,0.99]', value: 4 },
-                        { text: '(0.99,MAX)', value: 5 }
+                        { text: '缺失', value: null},
+                        { text: '(0,0.5]', value: 0.5 },
+                        { text: '(0.5,0.7]', value: 0.7 },
+                        { text: '(0.7,0.99]', value: 0.99 },
+                        { text: '(0.99,1]', value: 1 }
                     ]
                 },
                 ownership:{
@@ -183,48 +183,48 @@
                 businessTime:{
                     selected: 0,
                     options: [
-                        { text: '(MIN,3]&缺失', value: 1},
-                        { text: '(3,4]', value: 2 },
-                        { text: '(4,5]', value: 3 },
-                        { text: '(5,11]', value: 4 },
-                        { text: '(11,13]', value: 5 },
-                        { text: '(13,MAX)', value: 6 }
+                        { text: '(MIN,3]&缺失', value: 3},
+                        { text: '(3,4]', value: 4 },
+                        { text: '(4,5]', value: 5 },
+                        { text: '(5,11]', value: 11 },
+                        { text: '(11,13]', value: 13 },
+                        { text: '(13,MAX)', value: 15 }
                     ]
                 },
                 totalCredit:{
                     selected: 0,
                     options: [
-                        { text: '缺失', value: 1},
-                        { text: '(MIN,2000000]', value: 2 },
-                        { text: '(2000000,11799866]', value: 3 },
-                        { text: '(11799866,17500000]', value: 4 },
-                        { text: '(17500000,MAX)', value: 5 }
+                        { text: '缺失', value: null},
+                        { text: '(MIN,2000000]', value: 2000000 },
+                        { text: '(2000000,11799866]', value: 11799866 },
+                        { text: '(11799866,17500000]', value: 17500000 },
+                        { text: '(17500000,MAX)', value: 17500002 }
                     ]
                 },
                 creditBalance:{
                     selected: 0,
                     options: [
-                        { text: '(MIN,18245]&缺失', value: 1},
-                        { text: '(18245,207261]', value: 2 },
-                        { text: '(207261,1993987]', value: 3 },
-                        { text: '(1993987,3917093]', value: 4 },
-                        { text: '(3917093,MAX)', value: 5 }
+                        { text: '(MIN,18245]&缺失', value: 18425},
+                        { text: '(18245,207261]', value: 207261 },
+                        { text: '(207261,1993987]', value: 1993987 },
+                        { text: '(1993987,3917093]', value: 3917093 },
+                        { text: '(3917093,MAX)', value: 3917095 }
                     ]
                 },
                 guaranteeValue:{
                     selected: 0,
                     options: [
-                        { text: '缺失', value: 1},
-                        { text: '=0', value: 2 },
-                        { text: '(MIN,1000000]', value: 3 },
-                        { text: '(1000000,27900000]', value: 4 },
-                        { text: '(27900000,MAX)', value: 5 }
+                        { text: '缺失', value: null},
+                        { text: '=0', value: 0 },
+                        { text: '(MIN,1000000]', value: 1000000 },
+                        { text: '(1000000,27900000]', value: 27900000 },
+                        { text: '(27900000,MAX)', value: 28900000 }
                     ]
                 },
                 guarantyType:{
                     selected: 0,
                     options: [
-                         { text: '信用', value: 1},
+                        { text: '信用', value: 1},
                         { text: '抵押', value: 2 },
                         { text: '质押', value: 3 },
                         { text: '保证', value: 4 }
