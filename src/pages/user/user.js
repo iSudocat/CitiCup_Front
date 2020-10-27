@@ -7,6 +7,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './user.css'
 import user from './user.vue'
 
+import VueCookies from 'vue-cookies'
+Vue.prototype.cookies = VueCookies
+
 Vue.config.productionTip = false
 
 import axios from 'axios';

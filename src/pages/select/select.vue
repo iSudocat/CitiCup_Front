@@ -36,9 +36,9 @@
         name: 'selectComponent',
         components: {CateringComponent,headerComponent},
         beforeMount(){
-            //TODO:判断未登录时应跳转回登录界面(fhq)
-
-            //window.location.href = 'index.html'
+            if(this.cookies.get('UserID') == null){
+                window.location.href = 'index.html'
+            }
         },
         data: () => {
             return {
