@@ -23,7 +23,9 @@
                                         <b-input id="password" type="password" required v-model="form.Password"
                                                  class="input-material" placeholder="请输入密码"></b-input>
                                     </div>
+                                    <b-alert :show="showError" variant="danger">用户名或密码错误！</b-alert>
                                     <b-button block pill type="submit" variant="primary" id="login">登录</b-button>
+                                    <b-button block pill @click="jumpToRegister" variant="outline-info">没有账号？ 立即注册</b-button>
                                 </b-form>
                             </div>
                         </div>
@@ -38,7 +40,6 @@
 
     </div>
 
-
 </template>
 
 <script>
@@ -46,6 +47,7 @@
         name: 'indexComponent',
         data: () => {
             return {
+                showError: false,
                 form: {
                     UserID: '',
                     Password: ''
@@ -54,31 +56,46 @@
         },
         methods: {
             onSubmit(evt) {
-                //TODO:完成登录提交(fhq)
-
                 evt.preventDefault()
 
-                console.log(this.form.UserID)
-                console.log(this.form.Password)
-
-
-
                 this.axios.defaults.withCredentials = true;
+
                 this.axios
                     .post("/api/login?username=" + this.form.UserID + "&password=" + this.form.Password)
                     .then((response) => {
                         console.log(response.data)
-                        this.cookies.set("UserID",this.form.UserID)
+                        if(response.data.code === 200){
+                            this.showError = false
+                            this.cookies.set("UserID",this.form.UserID)
 
-                        console.log(document.cookie)
-                        window.location.href = 'select.html'
+                            this.axios.get('/api/me')
+                                .then((response) => {
+                                    let isAdmin = response.data.data.isAdmin
+                                    this.cookies.set("isAdmin",isAdmin)
+                                    if(isAdmin === true)
+                                        window.location.href = 'admin.html'
+                                    else
+                                        window.location.href = 'select.html'
+                                })
+                                .catch((error) => {
+                                    console.log(error)
+                                });
+
+
+                        }else{
+                            this.showError = true
+                        }
+
                     })
                     .catch((error) => {
                         console.log(error)
                     });
 
 
-            }
+            },
+            jumpToRegister(){
+                window.location.href = 'register.html'
+            },
         }
     }
 

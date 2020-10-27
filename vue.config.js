@@ -34,13 +34,15 @@ module.exports = {
     },
     devServer:{
         proxy: {
-            '/api': {                       //需要代理的接口
-                target:'http://49.235.232.153:8751', //目标服务器
+            '/api': {
+                target:'http://49.235.232.153:8751',
                 changeOrigin: true, //是否跨域
                 pathRewrite: {
-                    '^/api': '/api'             //重定向
+                    '^/api': '/api' //重定向
                 }
             }
         },
+        disableHostCheck: true,
+        port: 8080
     }
 }

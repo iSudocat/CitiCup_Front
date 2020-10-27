@@ -4,12 +4,14 @@
             <div class="container">
                 <div class="col-6 justify-content-start">
                     <img src="../../assets/logo.svg" alt="" width="30">
-                    <span class="text-uppercase text-small font-weight-bold text-dark ml-2 mb-0">Blanker——白板企业信贷评估平台</span>
+                    <span class="text-uppercase text-small font-weight-bold text-dark ml-2 mb-0">
+                        <a href="select.html" title="预测" style="text-decoration:none;color:#000000;">Blanker——白板企业信贷评估平台</a>
+                    </span>
                 </div>
 
                 <div class="d-flex flex-row">
-                    <div class="p-2"><b-link href="user.html">{{UserID}}</b-link></div>
-                    <div class="p-2"><b-button variant="outline-primary" size="sm" @click="logOut">注销</b-button></div>
+                    <div class="p-2"><b-link href="user.html" title="个人中心" v-if="isAdmin === false">{{UserID}}</b-link></div>
+                    <div class="p-2">                        <b-button variant="outline-primary" size="sm" @click="logOut">注销</b-button></div>
                 </div>
             </div>
         </nav>
@@ -22,16 +24,17 @@
         name: "headerComponent",
         mounted()  {
             this.UserID = $cookies.get('UserID')
+            this.isAdmin = this.cookies.get('isAdmin')
         },
         data: () => {
             return{
                 UserID: '',
+                isAdmin: false
             }
         },
         methods:{
             logOut: function () {
-                $cookies.remove('JSESSIONID')
-                $cookies.remove('UserID')
+                $cookies.keys().forEach(cookie => $cookies.remove(cookie))
                 window.location.href = 'index.html'
             },
         }

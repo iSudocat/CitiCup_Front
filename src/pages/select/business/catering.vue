@@ -36,38 +36,38 @@
         <b-card-text style="margin-top: 20px">最大股东持股占比（%）</b-card-text>
         <b-form-group>
             <b-form-radio-group id="radio-group-business" v-model="shareHolding.selected" :options="shareHolding.options"
-                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+                                buttons button-variant="outline-primary" size="sm" @input="dataTransport"></b-form-radio-group>
         </b-form-group>
 
         <b-card-text style="margin-top: 20px">经营场所权属</b-card-text>
         <b-form-group>
             <b-form-radio-group id="radio-group-business" v-model="ownership.selected" :options="ownership.options"
-                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+                                buttons button-variant="outline-primary" size="sm" @input="dataTransport"></b-form-radio-group>
         </b-form-group>
         <b-card-text style="margin-top: 20px">企业经营年限</b-card-text>
         <b-form-group>
             <b-form-radio-group id="radio-group-business" v-model="businessTime.selected" :options="businessTime.options"
-                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+                                buttons button-variant="outline-primary" size="sm" @input="dataTransport"></b-form-radio-group>
         </b-form-group>
         <b-card-text style="margin-top: 20px">累计授信总量（不含本笔申请）</b-card-text>
         <b-form-group>
             <b-form-radio-group id="radio-group-business" v-model="totalCredit.selected" :options="totalCredit.options"
-                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+                                buttons button-variant="outline-primary" size="sm" @input="dataTransport"></b-form-radio-group>
         </b-form-group>
         <b-card-text style="margin-top: 20px">征信总余额</b-card-text>
         <b-form-group>
             <b-form-radio-group id="radio-group-business" v-model="creditBalance.selected" :options="creditBalance.options"
-                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+                                buttons button-variant="outline-primary" size="sm" @input="dataTransport"></b-form-radio-group>
         </b-form-group>
         <b-card-text style="margin-top: 20px">押品有效担保价值</b-card-text>
         <b-form-group>
             <b-form-radio-group id="radio-group-business" v-model="guaranteeValue.selected" :options="guaranteeValue.options"
-                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+                                buttons button-variant="outline-primary" size="sm" @input="dataTransport"></b-form-radio-group>
         </b-form-group>
         <b-card-text style="margin-top: 20px">押品主担保方式</b-card-text>
         <b-form-group>
             <b-form-radio-group id="radio-group-business" v-model="guarantyType.selected" :options="guarantyType.options"
-                                buttons button-variant="light" size="sm" @input="dataTransport"></b-form-radio-group>
+                                buttons button-variant="outline-primary" size="sm" @input="dataTransport"></b-form-radio-group>
         </b-form-group>
         <hr>
 
@@ -163,7 +163,7 @@
                 inputIncome: true,
                 income: 0,
                 shareHolding:{
-                    selected: 0,
+                    selected: -1,
                     options: [
                         { text: '缺失', value: null},
                         { text: '(0,0.5]', value: 0.5 },
@@ -173,7 +173,7 @@
                     ]
                 },
                 ownership:{
-                    selected: 0,
+                    selected: -1,
                     options: [
                         { text: '自有', value: 1},
                         { text: '租赁&缺失', value: 2 },
@@ -181,7 +181,7 @@
                     ]
                 },
                 businessTime:{
-                    selected: 0,
+                    selected: -1,
                     options: [
                         { text: '(MIN,3]&缺失', value: 3},
                         { text: '(3,4]', value: 4 },
@@ -192,7 +192,7 @@
                     ]
                 },
                 totalCredit:{
-                    selected: 0,
+                    selected: -1,
                     options: [
                         { text: '缺失', value: null},
                         { text: '(MIN,2000000]', value: 2000000 },
@@ -202,7 +202,7 @@
                     ]
                 },
                 creditBalance:{
-                    selected: 0,
+                    selected: -1,
                     options: [
                         { text: '(MIN,18245]&缺失', value: 18425},
                         { text: '(18245,207261]', value: 207261 },
@@ -212,7 +212,7 @@
                     ]
                 },
                 guaranteeValue:{
-                    selected: 0,
+                    selected: -1,
                     options: [
                         { text: '缺失', value: null},
                         { text: '=0', value: 0 },
@@ -222,7 +222,7 @@
                     ]
                 },
                 guarantyType:{
-                    selected: 0,
+                    selected: -1,
                     options: [
                         { text: '信用', value: 1},
                         { text: '抵押', value: 2 },
@@ -236,15 +236,26 @@
             dataTransport: function(){
                 console.log('ok')
                 this.$emit('childByValue', {
-                    range: this.range.selected,
-                    province: this.province.selected,
-                    city: this.city.selected,
                     star: this.star,
                     avgPrice: this.avgPrice,
                     minPrice: this.minPrice,
                     takeout: this.takeout,
+                    totalOrder: this.totalOrder,
                     wifi: this.wifi,
-                    totalOrder: this.totalOrder
+                    province: this.province.selected,
+                    city: this.city.selected,
+                    range: this.range.selected,
+
+                    inputIncome: this.inputIncome,
+                    income: this.income,
+                    name: this.name,
+                    shareHolding: this.shareHolding.selected,
+                    ownership: this.ownership.selected,
+                    businessTime: this.businessTime.selected,
+                    totalCredit: this.totalCredit.selected,
+                    creditBalance: this.creditBalance.selected,
+                    guaranteeValue:this.guaranteeValue.selected,
+                    guarantyType: this.guarantyType.selected
                 })
             },
             pChange: function () {

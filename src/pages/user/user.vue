@@ -54,7 +54,7 @@
                                 <b-form-group label="贷款额度（万元）">
                                     <b-form-input v-model="loanModal.loan.money"></b-form-input>
                                 </b-form-group>
-                                <b-form-group label="贷款利率">
+                                <b-form-group label="贷款利率（%）">
                                     <b-form-input v-model="loanModal.loan.rate"></b-form-input>
                                 </b-form-group>
                                 <!--
@@ -91,7 +91,6 @@
 
                         <b-modal size="lg" :id="detailModal.id" :title="detailModal.title" ok-only>
                             <div>
-                            <!--TODO:显示分列-->
                                 <div class="row">
                                     <div class="col-md-5 offset-md-1" style="margin-top: 5px;">所在行业：{{detailModal.detail.business}}</div>
                                     <div class="col-md-5" style="margin-top: 5px;">企业名称：{{detailModal.detail.name}}</div>
@@ -155,11 +154,13 @@
         name: 'userComponent',
         components: {headerComponent},
         beforeMount(){
-
             if(this.cookies.get('UserID') == null){
                 window.location.href = 'index.html'
             }
-
+            if(this.cookies.get('isAdmin') === 'true'){
+                this.isAdmin = true
+                window.location.href = 'index.html'
+            }
         },
         data: () => {
             return {
@@ -167,6 +168,7 @@
                 remainingServiceDay: 0,
                 tel: null,
                 email: null,
+                isAdmin:false,
                 predictItems:[],
                 predictFields:[],
                 loanModal: {
@@ -270,14 +272,14 @@
                     { text: '(11,13]', value: 13 },
                     { text: '(13,MAX)', value: 15 }
                 ],
-                totalCredit: [
-                { text: '缺失', value: null},
-                { text: '(MIN,2000000]', value: 2000000 },
-                { text: '(2000000,11799866]', value: 11799866 },
-                { text: '(11799866,17500000]', value: 17500000 },
-                { text: '(17500000,MAX)', value: 17500002 }
+                totalCreditMap: [
+                    { text: '缺失', value: null},
+                    { text: '(MIN,2000000]', value: 2000000 },
+                    { text: '(2000000,11799866]', value: 11799866 },
+                    { text: '(11799866,17500000]', value: 17500000 },
+                    { text: '(17500000,MAX)', value: 17500002 }
                 ],
-                creditBalanceMaps: [
+                creditBalanceMap: [
                     { text: '(MIN,18245]&缺失', value: 18425},
                     { text: '(18245,207261]', value: 207261 },
                     { text: '(207261,1993987]', value: 1993987 },
@@ -302,19 +304,6 @@
         mounted () {
             this.predictDetails = []
             try {
-                /* 示例数据
-                this.predictItems = [
-                    {
-                        id: '2',
-                        time:'2020.10.25 19:21:35',
-                        name:'珞珈面馆',
-                        business:'餐饮业',
-                        city:"武汉",
-                        level:'A'
-                    }
-                ]
-                */
-
                 this.axios.get('/api/me')
                     .then((response) => {
                         console.log(response)
@@ -379,7 +368,6 @@
                     })
                     .then((response)=> {
                         console.log(response.data)
-
                         this.getAllPrediction()
                     })
                     .catch((error)=> {
@@ -391,7 +379,6 @@
             },
             initDetailModal(item, index, button) {
                 this.detailModal.index = index
-                //TODO:显示预测的详情记录【不用再获取，从前面获取的完整记录中构造即可】（wx）
                 this.detailModal.detail = {
                     business: '餐饮业',
                     name: this.predictDetails[index].enterpriseName,
@@ -403,30 +390,31 @@
                     totalOrder: this.predictDetails[index].totalSold,
                     takeout: this.predictDetails[index].takeOut === 1.0 ? '有' : '无',
                     wifi: this.predictDetails[index].wifi === 1.0 ? '有' : '无',
-                    income: this.predictDetails[index].yearIncome,
-                    shareHolding: this.shareHoldingMap[this.predictDetails[index].proportion].text,
+                    income: Math.round(this.predictDetails[index].yearIncome),
+                    shareHolding: this.getShareHoldingText(this.predictDetails[index].proportion),
                     ownership: this.ownershipMap[this.predictDetails[index].ownershipOfPremises].text,
-                    businessTime: this.businessTimeMap[this.predictDetails[index].operatingAge].text,
-                    totalCredit: this.predictDetails[index].totalLoanMoney,
-                    creditBalance: this.predictDetails[index].totalCreditBalance,
-                    guaranteeValue: this.predictDetails[index].effectiveGuaranteeValue,
+                    businessTime: this.getBusinessTimeText(this.predictDetails[index].operatingAge),
+                    totalCredit: this.getTotalCreditText(this.predictDetails[index].totalLoanMoney),
+                    creditBalance: this.getCreditBalanceText(this.predictDetails[index].totalCreditBalance),
+                    guaranteeValue: this.getGuaranteeValueText(this.predictDetails[index].effectiveGuaranteeValue),
                     guarantyType: this.guarantyTypeMap[this.predictDetails[index].mainGuaranteeMethod].text,
                     money: this.predictDetails[index].loanAmount,
                     rate: this.predictDetails[index].loanRate,
-                    loanStart: this.predictDetails[index].loanStart.substring(0,this.predictDetails[index].loanStart.indexOf("T")),
-                    loanEnd: this.predictDetails[index].loanEnd.substring(0,this.predictDetails[index].loanEnd.indexOf("T")),
-                    situation: this.situationMap[this.predictDetails[index].repaymentLevel].text
+                    loanStart: this.predictDetails[index].loanStart == null ? '' : this.predictDetails[index].loanStart.substring(0,this.predictDetails[index].loanStart.indexOf("T")),
+                    loanEnd:  this.predictDetails[index].loanEnd == null ? '' : this.predictDetails[index].loanEnd.substring(0,this.predictDetails[index].loanEnd.indexOf("T")),
+                    situation: this.predictDetails[index].repaymentLevel == null ? '' : this.situationMap[this.predictDetails[index].repaymentLevel].text
                 }
 
                 this.$root.$emit('bv::show::modal', this.detailModal.id, button)
             },
             getAllPrediction(){
+                this.predictItems = []
+                this.predictDetails = []
                 this.axios.get('/api/predictions')
                     .then((response) => {
                         console.log(response)
-                        this.predictDetails = []
+
                         response.data.data.forEach((item) => {
-                            console.log(item)
                             this.predictDetails.push(item)
                         })
                         this.predictDetails.forEach((item) => {
@@ -440,14 +428,51 @@
                             }
                             this.predictItems.push(p)
                         })
-
-                        this.predictLoaded = true
                     })
                     .catch((error) => {
                         console.log(error)
                     });
+            },
+            getShareHoldingText(v){
+                let text
+                this.shareHoldingMap.forEach((item) => {
+                    if (item.value === v)
+                        text = item.text
+                })
+                return text
+            },
+            getBusinessTimeText(v){
+                let text
+                this.businessTimeMap.forEach((item) => {
+                    if (item.value === v)
+                        text = item.text
+                })
+                return text
+            },
+            getTotalCreditText(v){
+                let text
+                this.totalCreditMap.forEach((item) => {
+                    if (item.value === v)
+                        text = item.text
+                })
+                return text
+            },
+            getCreditBalanceText(v){
+                let text
+                this.creditBalanceMap.forEach((item) => {
+                    if (item.value === v)
+                        text = item.text
+                })
+                return text
+            },
+            getGuaranteeValueText(v){
+                let text
+                this.guaranteeValueMap.forEach((item) => {
+                    if (item.value === v)
+                        text = item.text
+                })
+                return text
             }
-
         }
     }
 

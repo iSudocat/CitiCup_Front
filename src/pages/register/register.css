@@ -1,3 +1,8 @@
+.grecaptcha-badge{
+    z-index: 99999;
+}
+
+
 /*
 ==========================================================
 ==========================================================
@@ -1901,11 +1906,11 @@ input.input-material.is-invalid ~ label {
 *     LOGIN PAGE
 * ==========================================================
 */
-.login-page {
+.reg-page {
     position: relative;
 }
 
-.login-page::before {
+.reg-page::before {
     content: '';
     width: 100%;
     height: 100%;
@@ -1921,79 +1926,79 @@ input.input-material.is-invalid ~ label {
     right: 0;
 }
 
-.login-page .container {
+.reg-page .container {
     min-height: 100vh;
     z-index: 999;
     padding: 20px;
     position: relative;
 }
 
-.login-page .form-holder {
+.reg-page .form-holder {
     width: 100%;
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 50px;
 }
 
-.login-page .form-holder .info, .login-page .form-holder .form {
+.reg-page .form-holder .info, .reg-page .form-holder .form {
     min-height: 70vh;
     padding: 40px;
     height: 100%;
 }
 
-.login-page .form-holder div[class*='col-'] {
+.reg-page .form-holder div[class*='col-'] {
     padding: 0;
 }
 
-.login-page .form-holder .info {
+.reg-page .form-holder .info {
     background: rgba(43, 144, 217, 0.9);
     color: #fff;
 }
 
-.login-page .form-holder .info h1 {
+.reg-page .form-holder .info h1 {
     font-size: 2.5em;
     font-weight: 600;
 }
 
-.login-page .form-holder .info p {
+.reg-page .form-holder .info p {
     font-weight: 300;
 }
 
-.login-page .form-holder .form .form-group {
+.reg-page .form-holder .form .form-group {
     position: relative;
     margin-bottom: 30px;
 }
 
-.login-page .form-holder .form .content {
+.reg-page .form-holder .form .content {
     width: 100%;
 }
 
-.login-page .form-holder .form form {
+.reg-page .form-holder .form form {
     width: 100%;
     max-width: 400px;
 }
 
-.login-page .form-holder .form #login, .login-page .form-holder .form #register {
+.reg-page .form-holder .form #login, .reg-page .form-holder .form #register {
     margin-bottom: 20px;
     cursor: pointer;
 }
 
-.login-page .form-holder .form a.forgot-pass, .login-page .form-holder .form a.signup {
+.reg-page .form-holder .form a.forgot-pass, .reg-page .form-holder .form a.signup {
     font-size: 0.9em;
     color: #85b4f2;
 }
 
-.login-page .form-holder .form small {
+.reg-page .form-holder .form small {
     color: #aaa;
 }
 
-.login-page .form-holder .form .terms-conditions label {
+.reg-page .form-holder .form .terms-conditions label {
     cursor: pointer;
     color: #aaa;
     font-size: 0.9em;
 }
 
-.login-page .copyrights {
+.reg-page .copyrights {
     width: 100%;
     z-index: 9999;
     position: absolute;
@@ -2003,10 +2008,10 @@ input.input-material.is-invalid ~ label {
 }
 
 @media (max-width: 991px) {
-    .login-page .info, .login-page .form {
+    .reg-page .info, .reg-page .form {
         min-height: auto !important;
     }
-    .login-page .info {
+    .reg-page .info {
         padding-top: 100px !important;
         padding-bottom: 100px !important;
     }
