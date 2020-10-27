@@ -236,15 +236,26 @@
             dataTransport: function(){
                 console.log('ok')
                 this.$emit('childByValue', {
-                    range: this.range.selected,
-                    province: this.province.selected,
-                    city: this.city.selected,
                     star: this.star,
                     avgPrice: this.avgPrice,
                     minPrice: this.minPrice,
                     takeout: this.takeout,
+                    totalOrder: this.totalOrder,
                     wifi: this.wifi,
-                    totalOrder: this.totalOrder
+                    province: this.province.selected,
+                    city: this.city.selected,
+                    range: this.range.selected,
+
+                    inputIncome: this.inputIncome,
+                    income: this.income,
+                    name: this.name,
+                    shareHolding: this.shareHolding.selected,
+                    ownership: this.ownership.selected,
+                    businessTime: this.businessTime.selected,
+                    totalCredit: this.totalCredit.selected,
+                    creditBalance: this.creditBalance.selected,
+                    guaranteeValue:this.guaranteeValue.selected,
+                    guarantyType: this.guarantyType.selected
                 })
             },
             pChange: function () {

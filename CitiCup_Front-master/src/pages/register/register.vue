@@ -100,6 +100,7 @@
                     //提示密码不一致
                     this.showAlert = true
                 }else{
+                    this.axios.defaults.withCredentials = true;
                     this.axios
                     .post('/api/register?g-recaptcha-response=', {
                         username: this.form.UserID,

@@ -51,8 +51,27 @@
                     ]
                 },
                 submitData:{
-                    range: 0,
-                }
+                    score: 0,
+                    averageCost: 0,
+                    lowestCost: 0,
+                    takeOut: 0,
+                    totalSold: 0,
+                    wifi: 0,
+                    province: '',
+                    city: '',
+                    category: 0,
+
+                    yearIncome : null, //可无
+                    enterpriseName: '',
+                    industryName: '餐饮业',
+                    proportion: 0,
+                    ownershipOfPremises: 0,
+                    operatingAge: 0,
+                    totalLoanMoney: 0,
+                    totalCreditBalance: 0,
+                    effectiveGuaranteeValue: 0,
+                    mainGuaranteeMethod: 0
+                },
             }
         },
         methods: {
@@ -62,13 +81,41 @@
             childByValue: function (childValue) {
                 //TODO:完成所有组件间的数据传递(fhq)
 
-                //例子：
-                this.submitData.range = childValue.range
+                this.submitData.score = childValue.star
+                this.submitData.averageCost = childValue.avgPrice
+                this.submitData.lowestCost = childValue.minPrice
+                this.submitData.takeOut = childValue.takeout
+                this.submitData.totalSold = childValue.totalOrder
+                this.submitData.wifi = childValue.wifi
+                this.submitData.province = childValue.province
+                this.submitData.city = childValue.city
+                this.submitData.category = childValue.range
+
+                this.submitData.enterpriseName = childValue.name
+                this.submitData.industryName = '餐饮业'
+                this.submitData.proportion = childValue.shareHolding
+                this.submitData.ownershipOfPremises = childValue.ownership
+                this.submitData.operatingAge = childValue.businessTime
+                this.submitData.totalLoanMoney = childValue.totalCredit
+                this.submitData.totalCreditBalance = childValue.creditBalance
+                this.submitData.effectiveGuaranteeValue = childValue.guaranteeValue
+                this.submitData.mainGuaranteeMethod = childValue.guarantyType
+
+                this.submitData.yearIncome = childValue.income
             },
             submit: function(){
                 //TODO:构造并提交预测结果(fhq)
+                this.submitData.yearIncome = (this.submitData.yearIncome == 0) ? null : this.submitData.yearIncome
 
-                console.log(this.submitData.range)
+                this.axios.defaults.withCredentials = true;
+                this.axios
+                    .post('/api/prediction', this.submitData)
+                    .then((response) => {
+                        console.log(response.data)
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
 
             }
         }
