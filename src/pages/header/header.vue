@@ -10,9 +10,12 @@
                     </span>
         </div>
 
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row align-items-center">
           <div class="p-2">
-            <b-link href="user.html" title="个人中心" v-if="isAdmin === 'false' || isAdmin === 'null'">{{ UserID }}</b-link>
+            <b-link href="select.html" title="预测">预测</b-link>
+          </div>
+          <div class="p-2">
+            <b-link href="user.html" title="个人中心" v-if="isAdmin === 'false' || isAdmin === 'null'">个人中心</b-link>
           </div>
           <div class="p-2">
             <b-button variant="outline-primary" size="sm" @click="logOut">注销</b-button>

@@ -28,7 +28,7 @@
                              class="input-material" placeholder="请再次输入密码"></b-input>
                   </div>
                   <div class="form-group">
-                    <b-form-input id="phone" type="text" v-model="form.Phone" required
+                    <b-form-input id="phone" type="tel" v-model="form.Phone" required
                                   class="input-material" placeholder="请输入手机号"></b-form-input>
                   </div>
                   <div class="form-group">
